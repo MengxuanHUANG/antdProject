@@ -1,5 +1,6 @@
 import { PureComponent } from 'react';
 import { Layout, Icon, Typography, Menu } from 'antd';
+import Link from 'umi/link';
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Text, Title } = Typography;
@@ -26,7 +27,8 @@ class BasicLayout extends PureComponent {
                         <Title level={3} style={{ color: "white", display: 'inline-block', margin: '10px 0px 10px 30px' }}>Menu</Title>
                     </div>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                        <MenuItem key='1'>
+                        <MenuItem key='1' >
+                            <Link to="/home"></Link>
                             <Icon type="fire" theme="filled" style={{fontSize:'20px'}}/>
                             <Text style={{color:'white'}}>Home</Text>
                         </MenuItem>
@@ -47,10 +49,12 @@ class BasicLayout extends PureComponent {
                 <Layout>
                     <Header style={headerStyle}>
                         <Title level={1}>
-                            Welcome to Home Page
+                            This is page header
                         </Title>
                     </Header>
-                    <Content style={{ margin: '24px 16px 0' }}></Content>
+                    <Content style={{ margin: '24px 16px 0' }}>
+                        {this.props.children}
+                    </Content>
                     <Footer style={{ textAlign: 'center' }}>Provided by IMT-HMX</Footer>
                 </Layout>
             </Layout>

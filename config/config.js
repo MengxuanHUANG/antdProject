@@ -8,11 +8,15 @@ export default{
     routes: [
         {
             path: '/',
+            component: './login/index',
+        },
+        {
+            path: '/home',
             component: '../layout',
             routes:[
                 {
-                    path: 'HelloWorld',
-                    component: './login'
+                    path: '/home',
+                    component: './home/Home'
                 }
             ]
         }
