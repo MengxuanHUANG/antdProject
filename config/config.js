@@ -1,5 +1,4 @@
 export default{
-    singular: true,
     plugins: [
         ["umi-plugin-react",{
             antd: true
@@ -19,6 +18,11 @@ export default{
                     component: './home/Home'
                 }
             ]
+        },
+        //temporary 404
+        {
+            path: '/404',
+            component: './404'
         }
     ],
 }

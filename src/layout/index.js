@@ -18,7 +18,31 @@ const headerStyle = {
     padding: 0,
 };
 class BasicLayout extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state={
+            menuItems:[],
+        }
+    }
+    componentDidMount = () => {
+        const menuList=['Home','page1', 'page2', 'page3'];
+        const menuItems=new Array(menuList.length);
+        menuList.forEach((value,index)=>{
+            menuItems.push(
+                <MenuItem key={`${index}`}>
+                    <Link to={`/${value}`}></Link>
+                    <Icon type="fire" theme="filled" style={{ fontSize: '20px' }} />
+                    <Text style={{ color: 'white' }}>{value}</Text>
+                </MenuItem>
+            );
+        });
+        this.setState({
+            menuItems:menuItems,
+        })
+    }
     render() {
+        const {menuItems}=this.state;
+        const {children} =this.props;
         return (
             <Layout>
                 <Sider style={siderStyle}>
@@ -26,24 +50,8 @@ class BasicLayout extends PureComponent {
                         <Icon type="ant-design" style={{ fontSize: '40px' }} />
                         <Title level={3} style={{ color: "white", display: 'inline-block', margin: '10px 0px 10px 30px' }}>Menu</Title>
                     </div>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                        <MenuItem key='1' >
-                            <Link to="/home"></Link>
-                            <Icon type="fire" theme="filled" style={{fontSize:'20px'}}/>
-                            <Text style={{color:'white'}}>Home</Text>
-                        </MenuItem>
-                        <MenuItem key={['2']}>
-                            <Icon type="apple" theme="filled" style={{fontSize:'20px'}}/>
-                            <Text style={{color:'white'}}>Page1</Text>
-                        </MenuItem>
-                        <MenuItem key={['3']}>
-                            <Icon type="crown" theme="twoTone" style={{fontSize:'20px'}}/>
-                            <Text style={{color:'white'}}>Page2</Text>
-                        </MenuItem>
-                        <MenuItem key={['4']}>
-                            <Icon type="dollar" theme="twoTone" style={{fontSize:'20px'}}/>
-                            <Text style={{color:'white'}}>Page3</Text>
-                        </MenuItem>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['0']}>
+                        {menuItems}
                     </Menu>
                 </Sider>
                 <Layout>
@@ -53,9 +61,9 @@ class BasicLayout extends PureComponent {
                         </Title>
                     </Header>
                     <Content style={{ margin: '24px 16px 0' }}>
-                        {this.props.children}
+                        {children}
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>Provided by IMT-HMX</Footer>
+                    <Footer style={{ textAlign: 'center' }}>Powered by antd-design</Footer>
                 </Layout>
             </Layout>
         );

@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import { Input, Typography, Button, Divider } from 'antd';
-import { hashHistory } from 'react-router';
+import router from 'umi/router';
 import bgImage from '../../images/login/login.jpg';
 
 const { Title, Text } = Typography;
@@ -30,16 +30,15 @@ const inputStyle = {
     height: '30px',
 };
 class Login extends PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             username: '',
             password: '',
         }
     }
     onSignin = () => {
-        const history = this.props.history;
-        history.push('/home');
+        router.push('/home');
     }
     onSignup = () => {
 
