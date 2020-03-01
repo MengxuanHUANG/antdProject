@@ -1,9 +1,16 @@
-export default{
+export default {
     plugins: [
-        ["umi-plugin-react",{
-            antd: true
+        ["umi-plugin-react", {
+            antd: true,
+            dva: true,
         }]
     ],
+    proxy: {
+        '/servlet': {
+            target: 'http://34.67.128.245:8080',
+            changeOrigin: true,
+        },
+    },
     routes: [
         {
             path: '/',
@@ -12,10 +19,10 @@ export default{
         {
             path: '/home',
             component: '../layout',
-            routes:[
+            routes: [
                 {
                     path: '/home',
-                    component: './home/Home'
+                    component: './home/index'
                 }
             ]
         },

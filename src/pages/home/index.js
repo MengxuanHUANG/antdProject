@@ -1,5 +1,5 @@
 import {PureComponent} from 'react';
-import {SampleCard} from '../sampleCard';
+import {SampleCard} from '../../components/sampleCard.js';
 
 class HomePage extends PureComponent{
     render(){

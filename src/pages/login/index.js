@@ -1,10 +1,10 @@
-import { PureComponent } from 'react';
-import { Input, Typography, Button, Divider } from 'antd';
 import router from 'umi/router';
+import { PureComponent } from 'react';
+import { connect } from 'dva';
+import { Input, Typography, Button, Divider } from 'antd';
 import bgImage from '../../images/login/login.jpg';
 
 const { Title, Text } = Typography;
-
 const backgroundStyle = {
     display: 'block',
     textAlign: 'center',
@@ -29,6 +29,24 @@ const inputStyle = {
     width: '85%',
     height: '30px',
 };
+const namespace = 'login';
+const mapStateToProps = (state) => {
+    const result = state[namespace];
+    return {
+        result,
+    };
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (data) => {
+            dispatch({
+                type: `${namespace}/login`,
+                payload: data,
+            });
+        },
+    };
+};
+@connect(mapStateToProps, mapDispatchToProps)
 class Login extends PureComponent {
     constructor(props) {
         super(props);
@@ -38,11 +56,10 @@ class Login extends PureComponent {
         }
     }
     onSignin = () => {
-        router.push('/home');
+        const data = { ...this.state }
+        this.props.login(data);
     }
-    onSignup = () => {
-
-    }
+    onSignup = () => { }
     handleUsrInput = (e) => {
         //console.log(e.target.value);
         this.setState({
@@ -58,7 +75,13 @@ class Login extends PureComponent {
 
     }
     render() {
-        const { onSignin, handleUsrInput, handlePasswdInput, handleForgetPasswd, onSignup } = this;
+        const {
+            onSignin,
+            handleUsrInput,
+            handlePasswdInput,
+            handleForgetPasswd,
+            onSignup
+        } = this;
         return (
             <div style={backgroundStyle}>
                 <div style={coverStyle}>
@@ -84,15 +107,15 @@ class Login extends PureComponent {
                             <Title level={3} style={{ color: '##85a5ff' }}>New User?</Title>
                         </div>
                         <Button
-                            style={{ 
-                                width: '80%', 
-                                height: '40px', 
-                                backgroundColor: '#5cdbd3', 
-                                border: 'none', 
-                                color: 'white' 
+                            style={{
+                                width: '80%',
+                                height: '40px',
+                                backgroundColor: '#5cdbd3',
+                                border: 'none',
+                                color: 'white'
                             }}
                             onClick={onSignup}>
-                                Quick Sign up
+                            Quick Sign up
                             </Button>
                     </div>
                 </div>
