@@ -3,11 +3,24 @@ export default {
         ["umi-plugin-react", {
             antd: true,
             dva: true,
+            locale:{
+                enable: true,
+                default: 'zh-CN',
+                baseNavigator: true,
+                antd: true,
+            }
         }]
     ],
     proxy: {
-        '/servlet': {
+        //for testing service api
+        '/api': {
             target: 'http://34.67.128.245:8080',
+            changeOrigin: true,
+        },
+        //only for local debugging
+        //test local api
+        '/firstProject_war_exploded':{
+            target: 'http://localhost:8080',
             changeOrigin: true,
         },
     },
@@ -18,7 +31,7 @@ export default {
         },
         {
             path: '/home',
-            component: '../layout',
+            component: '../layout/home',
             routes: [
                 {
                     path: '/home',
@@ -26,7 +39,7 @@ export default {
                 }
             ]
         },
-        //temporary 404
+        //temporary 404 route
         {
             path: '/404',
             component: './404'

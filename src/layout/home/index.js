@@ -1,5 +1,6 @@
 import { PureComponent } from 'react';
 import { Layout, Icon, Typography, Menu } from 'antd';
+import { connect } from 'dva';
 import Link from 'umi/link';
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -17,32 +18,52 @@ const headerStyle = {
     textAlign: 'center',
     padding: 0,
 };
+
+const namespace = 'home';
+const mapStateToProps = (state) => {
+    const { menuList } = state[namespace];
+    return {
+        menuList,
+    };
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchMenu: (data) => {
+            dispatch({
+                type: `${namespace}/fetchMenu`,
+                payload: data,
+            });
+        },
+    };
+};
+@connect(mapStateToProps, mapDispatchToProps)
 class BasicLayout extends PureComponent {
     constructor(props) {
         super(props);
-        this.state={
-            menuItems:[],
-        }
+        const data = {};
+        this.state = {}
     }
-    componentDidMount = () => {
-        const menuList=['Home','page1', 'page2', 'page3'];
-        const menuItems=new Array(menuList.length);
-        menuList.forEach((value,index)=>{
-            menuItems.push(
-                <MenuItem key={`${index}`}>
-                    <Link to={`/${value}`}></Link>
-                    <Icon type="fire" theme="filled" style={{ fontSize: '20px' }} />
-                    <Text style={{ color: 'white' }}>{value}</Text>
-                </MenuItem>
-            );
-        });
-        this.setState({
-            menuItems:menuItems,
-        })
+    componentDidMount() {
+        //check login
+
+        //request menu
+        const data = {};
+        this.props.fetchMenu(data);
     }
     render() {
-        const {menuItems}=this.state;
-        const {children} =this.props;
+        const { children, menuList } = this.props;
+        let menuItems = [];
+        if (menuList) {
+            menuItems = menuList.map((value, index) => {
+                return (
+                    <MenuItem key={`${index}`}>
+                        <Link to={value.link}></Link>
+                        <Icon type="fire" theme="filled" style={{ fontSize: '20px' }} />
+                        <Text style={{ color: 'white' }}>{value.name}</Text>
+                    </MenuItem>
+                );
+            });
+        }
         return (
             <Layout>
                 <Sider style={siderStyle}>
