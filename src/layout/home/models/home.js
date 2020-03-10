@@ -25,27 +25,39 @@ export default {
             const menulist = [
                 {
                     id: '1',
-                    name: 'Home',
-                    link: 'home',
+                    name: "Manager",
+                    subMenu: []
                 },
                 {
                     id: '2',
-                    name: 'page2',
-                    link: 'page2',
-                },
-                {
-                    id: '3',
-                    name: 'page3',
-                    link: 'page3',
-                },
-                {
-                    id: '4',
-                    name: 'page4',
-                    link: 'page4',
-                },
+                    name: 'food Menu',
+                    subMenu: [
+                        {
+                            id: '2.1',
+                            name: '烧味',
+                            link: 'barbecue',
+                        },
+                        {
+                            id: '2.2',
+                            name: 'page2',
+                            link: 'page2',
+                        },
+                        {
+                            id: '2.3',
+                            name: 'page3',
+                            link: 'page3',
+                        },
+                        {
+                            id: '2.4',
+                            name: 'page4',
+                            link: 'page4',
+                        },
+                    ],
+                }
+
             ]
             if (response.result === 'success') {
-                
+
                 return {
                     menuList: menulist,
                 }

@@ -34,8 +34,8 @@ export default {
             component: '../layout/home',
             routes: [
                 {
-                    path: '/home',
-                    component: './home/index'
+                    path: 'barbecue',
+                    component: './barbecue/index',
                 }
             ]
         },
