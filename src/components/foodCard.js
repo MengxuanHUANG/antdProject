@@ -10,7 +10,7 @@ const cardStyle = {
 
 const divStyle={
     display: 'inline-block',
-    width: '300px',
+    width: '280px',
     margin: '20px'
 }
 
@@ -25,7 +25,7 @@ function FoodCard(props) {
         handleReduce
     } = props;
     return (
-        <div key = {id} style={divStyle}>
+        <div style={divStyle}>
             <Card
                 style={cardStyle}
                 headStyle={{ padding: '0px', margin: '0px' }}

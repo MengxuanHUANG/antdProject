@@ -45,7 +45,7 @@ class BasicLayout extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            collapsed: false,
+            collapsed: true,
         }
     }
     componentDidMount() {
@@ -141,7 +141,7 @@ class BasicLayout extends PureComponent {
                     </Sider>
                 </Anchor>
                 <Layout>
-                    <Anchor style={{ margin: '0px', padding: '0px', height: '75px', width: '100%' }}>
+                    <Anchor style={{ margin: '0px', padding: '0px', width: '100%' }}>
                         <Header style={headerStyle}>
                             <PageHeader />
                         </Header>
