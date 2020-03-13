@@ -34,8 +34,12 @@ export default {
             component: '../layout/home',
             routes: [
                 {
-                    path: 'barbecue',
-                    component: './barbecue/index',
+                    path: 'food',
+                    component: './home/index',
+                },
+                {
+                    path: 'userManagement',
+                    component: './management/userManagement/index',
                 }
             ]
         },

@@ -14,8 +14,6 @@ export default {
     effects: {
         *fetchMenu({ payload }, { call, put }) {
             const url = '/api/servlet/fetchMenuList';
-
-            //temp data
             var response = yield call(POST, { data: payload, url });
             yield put({ type: 'setMenuList', payload: response });
         }
@@ -26,7 +24,13 @@ export default {
                 {
                     id: '1',
                     name: "Manager",
-                    subMenu: []
+                    subMenu: [
+                        {
+                            id: '1.1',
+                            name:'userManagement',
+                            link: 'userManagement',
+                        }
+                    ]
                 },
                 {
                     id: '2',
@@ -35,29 +39,28 @@ export default {
                         {
                             id: '2.1',
                             name: '烧味',
-                            link: 'barbecue',
+                            //link: 'food',
                         },
                         {
                             id: '2.2',
                             name: 'page2',
-                            link: 'page2',
+                            //link: 'page2',
                         },
                         {
                             id: '2.3',
                             name: 'page3',
-                            link: 'page3',
+                            //link: 'page3',
                         },
                         {
                             id: '2.4',
                             name: 'page4',
-                            link: 'page4',
+                            //link: 'page4',
                         },
                     ],
                 }
 
             ]
             if (response.result === 'success') {
-
                 return {
                     menuList: menulist,
                 }

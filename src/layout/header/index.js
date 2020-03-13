@@ -8,7 +8,7 @@ const divStyle = {
     textAlign: 'left',
     width: '100%',
     height: '100%',
-    padding: '5px 5%'
+    padding: '5px 3%'
 };
 
 class PageHeader extends PureComponent {
@@ -20,33 +20,13 @@ class PageHeader extends PureComponent {
         const { } = this.props;
         return (
             <div style={divStyle}>
-                <div style={{ display: 'inline-block', height: '50px', marginTop: '11px' }}>
-                    <Button
-                        // type="primary"
-                        icon="shopping-cart"
-                        style={{ height: '50px', width: '50px', fontSize: '30px' }}
-                    />
-                </div>
-                <div style={{ display: 'inline-block', height: '100%', marginLeft: '20px' }}>
-                    <Title level={4}>{`Totle Price: $${18}`}</Title>
-                </div>
-                <div style={{ display: 'inline-block', height: '100%', margin: '11px 0px 0px 20px' }}>
-                    <Button
-                        type="primary"
-                        icon="pay-circle"
-                        shape="round"
-                        style={{ height: '40px', fontSize: '25px' }}
-                    >
-                        Pay
-                    </Button>
-                </div>
                 <div style={{ display: 'inline-block', height: '100%', float: 'right' }}>
                     <Badge count='1'>
                         <Avatar size={50} icon="user" />
                     </Badge>
-                    
+
                 </div>
-                <div style={{ display: 'inline-block', height: '100%', float:'right', margin: '11px 20px 0px 0px' }}>
+                <div style={{ display: 'inline-block', height: '100%', float: 'right', margin: '11px 20px 0px 0px' }}>
                     <Button
                         type="danger"
                         style={{ height: '24px', fontSize: '12px' }}
@@ -54,6 +34,28 @@ class PageHeader extends PureComponent {
                         Log out
                     </Button>
                 </div>
+                <div style={{ display: 'inline-block'}}>
+                    <div style={{ display: 'inline-block', height: '50px', marginTop: '11px' }}>
+                        <Button
+                            icon="shopping-cart"
+                            style={{ height: '50px', width: '50px', fontSize: '30px' }}
+                        />
+                    </div>
+                    <div style={{ display: 'inline-block', height: '100%', marginLeft: '18px' }}>
+                        <Title level={4}>{`Totle: $${18}`}</Title>
+                    </div>
+                    <div style={{ display: 'inline-block', height: '100%', margin: '11px 0px 0px 10px' }}>
+                        <Button
+                            type="primary"
+                            icon="pay-circle"
+                            shape="round"
+                            style={{ height: '32px', fontSize: '18px' }}
+                        >
+                            Pay
+                    </Button>
+                    </div>
+                </div>
+
             </div>
         );
     }

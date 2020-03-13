@@ -45,6 +45,7 @@ class BasicLayout extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
+            selectKey: '',
             collapsed: true,
         }
     }
@@ -56,49 +57,48 @@ class BasicLayout extends PureComponent {
         this.props.fetchMenu(data);
     }
     generateMenuItems = (menulist, sub) => {
-        if (menulist) {
-            const menuItems = menulist.map((value, index) => {
-                return (
-                    <MenuItem key={`${sub}.${index}`}>
-                        <Icon type="book" theme="filled" style={{ fontSize: '20px' }} />
-                        <Text style={{ color: 'white' }}>{value.name}</Text>
-                        <Link to={`/home/${value.link}`}></Link>
-                    </MenuItem>
-                );
-            });
-            return menuItems;
-        }
-        return [];
+        if (!menulist) return [];
+        return menulist.map((value, index) => {
+            return (
+                <MenuItem key={`${sub}.${index}`}>
+                    <Icon type="book" theme="filled" style={{ fontSize: '20px' }} />
+                    <Text style={{ color: 'white' }}>{value.name}</Text>
+                    {value.link ?
+                        <Link to={`/home/${value.link}`}></Link> :
+                        <Link to={`/home/food?key=${value.id}`}></Link>
+                    }
+                </MenuItem>
+            );
+        });
     }
     generateSubMenu = (menulist) => {
-        if (menulist) {
-            const SubMenus = menulist.map((value, index) => {
-                if (value.subMenu.length) {
-                    return (
-                        <SubMenu key={`${index}`} title={
-                            <div>
-                                <Icon type="fire" theme="filled" style={{ fontSize: '20px' }} />
-                                <Text style={{ color: 'white' }}>{value.name}</Text>
-                            </div>}>
-                            {this.generateMenuItems(value.subMenu, index)}
-                        </SubMenu>
-                    );
-                }
-                else {
-                    return (
-                        <MenuItem key={`${index}`}>
+        if (!menulist) return [];
+        return menulist.map((value, index) => {
+            if (value.subMenu.length) {
+                return (
+                    <SubMenu key={`${index}`} title={
+                        <div>
                             <Icon type="fire" theme="filled" style={{ fontSize: '20px' }} />
-                            <span style={{ color: 'white' }}>{value.name}</span>
-                        </MenuItem>
-                    );
-                }
-            });
-            return SubMenus;
-        }
-        return [];
+                            <Text style={{ color: 'white' }}>{value.name}</Text>
+                        </div>}>
+                        {this.generateMenuItems(value.subMenu, index)}
+                    </SubMenu>
+                );
+            }
+            else {
+                return (
+                    <MenuItem key={`${index}`}>
+                        <Icon type="fire" theme="filled" style={{ fontSize: '20px' }} />
+                        <span style={{ color: 'white' }}>{value.name}</span>
+                    </MenuItem>
+                );
+            }
+        });
     }
     handleMenuClick = (e) => {
-        console.log(e);
+        this.setState({
+            selectKey: e.key
+        });
     }
     toggleCollapsed = () => {
         this.setState({
@@ -114,27 +114,16 @@ class BasicLayout extends PureComponent {
                         style={siderStyle}
                         collapsed={this.state.collapsed}
                     >
-                        <div 
-                            style={{ display: 'inline-block', textAlign:'center', width: '100%', padding:'5px'}}
+                        <div
+                            style={{ display: 'inline-block', textAlign: 'center', width: '100%', padding: '5px' }}
                             onClick={this.toggleCollapsed}
                         >
-                            <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} style={{fontSize:'20px'}}/>
+                            <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} style={{ fontSize: '20px' }} />
                         </div>
-                        {/* <div style={{ margin: '10px' }}>
-                            <Icon type="home" style={{ fontSize: '40px' }} />
-                            <Title
-                                level={3}
-                                style={{ color: "white", display: 'inline-block', margin: '10px 0px 10px 30px' }}
-                            >
-                                Home
-                        </Title>
-                        </div> */}
                         <Menu
                             theme="dark" mode="inline"
                             defaultSelectedKeys={['1.0']}
-                            defaultOpenKeys={['1']}
                             onClick={(e) => this.handleMenuClick(e)}
-
                         >
                             {this.generateSubMenu(menuList)}
                         </Menu>

@@ -25,7 +25,7 @@ export default {
                 message.success(
                     response.msg,
                     1.5,
-                    () => { router.push('./home'); }
+                    () => { router.push('./home/food'); }
                 )
             }
             else {
