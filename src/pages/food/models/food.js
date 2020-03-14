@@ -23,22 +23,27 @@ export default {
                 {
                     id:'0001',
                     name:'叉烧饭',
-                    price: '$18',
+                    price: 20,
                 },
                 {
                     id:'0002',
-                    name:'叉烧饭',
-                    price: '$18',
+                    name:'烧鹅饭',
+                    price: 30,
                 },
                 {
                     id:'0003',
-                    name:'叉烧饭',
-                    price: '$18',
+                    name:'焗猪扒饭',
+                    price: 23,
                 },
                 {
                     id:'0004',
-                    name:'叉烧饭',
-                    price: '$18',
+                    name:'桂林米粉',
+                    price: 40,
+                },
+                {
+                    id:'0005',
+                    name: '红烧牛肉面',
+                    price: 42,
                 }
             ];
             if (response.result == 'success') {

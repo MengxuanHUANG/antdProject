@@ -34,8 +34,13 @@ export default {
             component: '../layout/home',
             routes: [
                 {
+                    //temorary
+                    path: '/home',
+                    component: './welcome/index',
+                },
+                {
                     path: 'food',
-                    component: './home/index',
+                    component: './food/index',
                 },
                 {
                     path: 'userManagement',

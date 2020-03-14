@@ -7,7 +7,7 @@ const callback = (errorCode) => {
 }
 
 export default {
-    namespace: 'home',
+    namespace: 'menu',
     state: {
         menuList: [],
     },

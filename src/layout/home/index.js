@@ -4,9 +4,7 @@ import { MenuOutlined, HomeOutline } from '@ant-design/icons';
 import { connect } from 'dva';
 import Link from 'umi/link';
 
-import PageHeader from '../header/index';
-
-const { Header, Footer, Sider, Content } = Layout;
+const { Footer, Sider } = Layout;
 const { Text, Title } = Typography;
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
@@ -16,14 +14,8 @@ const siderStyle = {
     minHeight: '100vh',
     color: '#fff'
 };
-const headerStyle = {
-    height: '100%',
-    background: '#fff',
-    textAlign: 'center',
-    padding: 0,
-};
 
-const namespace = 'home';
+const namespace = 'menu';
 const mapStateToProps = (state) => {
     const { menuList } = state[namespace];
     return {
@@ -130,19 +122,11 @@ class BasicLayout extends PureComponent {
                     </Sider>
                 </Anchor>
                 <Layout>
-                    <Anchor style={{ margin: '0px', padding: '0px', width: '100%' }}>
-                        <Header style={headerStyle}>
-                            <PageHeader />
-                        </Header>
-                    </Anchor>
-                    <Content style={{ margin: '24px 16px 0' }}>
-                        {children}
-                    </Content>
+                    {children}
                     <Footer style={{ textAlign: 'center' }}>
                         Powered by antd-design
                     </Footer>
                 </Layout>
-
             </Layout>
         );
     }
